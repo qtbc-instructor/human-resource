@@ -17,7 +17,7 @@
   echo "承認状態の講師を評価します";
  ?>
 <button id="company_valution_button"><a href="company_mainpage.php">評価登録評価する</a></button>
-<p class="company_search_item" >検索</p>
+<p class="company_search_item" >検索です</p>
 <?php
   echo "検索項目の選択と検索が実行できます";
 ?>
