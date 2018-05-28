@@ -6,26 +6,6 @@
 </head>
 
 <body>
-  <?php 
-  require_once("./FormCheck.php");
-  
-  echo $_POST["login_address"];
-  
-  if(!isset($_POST["login_address"])){
-    echo "未入力項目があります。";
-  }
-    
-  // if($value == "sex" && !in_array($_POST[$value],$check_sex)){
-  //   $err[] = $value."　の送られたデータが不正です。";
-  // } 
-  
-  
-  
-  
-   ?>
-  
-  
-  
   <!-- 登録済みアカウントログインフォーム -->
   <div>
     <form method="post" id="loginForm">
