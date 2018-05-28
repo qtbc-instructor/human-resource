@@ -3,11 +3,11 @@
 <head>
   <mata charset="utf-8">
     <title>検索結果</title>
-  </head>
+</head>
   <body>
     <div>
-      <?php
 
+  <?php
       $user = 'root';
       $password = 'mariadb';
       $dbName = 'lcmatching_db';
@@ -24,66 +24,68 @@
       $stm = $pdo->prepare($sql);
       $stm->execute();
       $results = $stm->fetchAll(PDO::FETCH_ASSOC);
+      echo "<pre>";
+      var_dump($results);
+      echo "<pre>";
+      ?>
 
+      <form method="POST" action="confirm_offer.php">
+        <ul>
+
+
+      <?php
       //テーブルのタイトル行
       echo "<table>";
       echo "<thead><tr>";
-      echo "<tr>","ID","</tr>";
+      echo "<th>","","</th>";
+      echo "<th>","ID","</th>";
       echo "<th>","名前","</th>";
       echo "<th>","電話番号","</th>";
       echo "<th>","アドレス","</th>";
       echo "<th>","スキル","</th>";
       echo "<th>","日付","</th>";
       echo "</tr></thead>";
-      echo "<tbody>";
 
-      foreach ($result as $row){
+      foreach($results as $row) {
         echo "<tr>";
-        echo "<td>",es($row['id']),"</td>";
-        echo "<td>",es($row['name']),"</td>";
-        echo "<td>",es($row['tel']),"</td>";
-        echo "<td>",es($row['adress']),"</td>";
-        echo "<td>",es($row['skill']),"</td>";
-        echo "<td>",es($row['freeday']),"</td>";
+        echo "<td>",'<input type="checkbox" name="check[]" value=',$row['id'],'>',"</td>";
+        echo "<td>",$row['id'],"</td>";
+        echo "<td>",$row['name'],"</td>";
+        echo "<td>",$row['tel'],"</td>";
+        echo "<td>",$row['mail_address'],"</td>";
+        echo "<td>",$row['skill'],"</td>";
+        echo "<td>",$row['freeday'],"</td>";
         echo "</tr>";
       }
-      echo "</tbody>";
+      echo "<tbody>";
       echo "</table>";
-    } catch (Exception $e){
-      echo '<span class="error">エラーがありました。</span><br>';
-      echo $e->getMessage();
-      exit();
-    }
 
-      $skill = $_POST["skill"];
-      $skillList = ["1skill","2skill","3skill"];
-      $date = $_POST["date"];
-      $date_List = "select * from date WHERE start_date>='01/01'and end_date<='12/31'";
-      $results = lecture($skill, $skillList, $id, $name, $date, $date_List);
-      echo "{$results}";
+      } catch (Exception $e){
+        echo '<span class="error">エラーがありました。</span><br>';
+        echo $e->getMessage();
+        exit();
+      }
 
-
-　　　//検索結果の表示
-     //スキル検索の場合
-    //  function lecture($skill, $skillList, $id, $name, $date, $date_List){
-    //   if(in_array($skill, $skillList) || in_array($date, $date_List)){
-    //     $results = "{$id}:{$name}   {$skill}   {$date}";
-    //   } else {
-    //     $results = "";
-    //   }
-    //   return $results;
-    // }
-
-     ?>
+      $error = [];
+      if(isSet($_POST["name"])){
+        $names = ($_POST["name"]);
+        $diffValue = array_diff($_POST["name"], $names);
+        if(count($diffValue)==0){
+          $nameChecked = $_POST["name"];
+        } else {
+          $nameChecked = [];
+          $error[] = "エラーです";
+        }
+      } else {
+        $nameChecked = [];
+      }
 
 
-
-       <form method="POST" action="confirm_offer.php">
-         <ul>
-           <input type="button" value="戻る" onclick="location.href='company_mainpage.php'">
-           <input type="submit" value="確認">
-         </ul>
-       </form>
-       <div>
-       </body>
-     </html>
+      ?>
+      <input type="button" value="戻る" onclick="location.href='company_mainpage.php'">
+      <input type="submit" value="決定">
+    </ul>
+  </form>
+    </div>
+  </body>
+</html>
