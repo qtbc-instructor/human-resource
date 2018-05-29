@@ -21,7 +21,6 @@
   echo "<thead><tr>";
   echo "<th>","講師名","</th>";
   echo "<th>","日付","</th>";
-  echo "<th>","状態","</th>";
   echo "</thead></tr>";
   echo "<tbody>";
   foreach($result as $approvalPending) {
