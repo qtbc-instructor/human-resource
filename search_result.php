@@ -20,7 +20,8 @@
       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       echo "データベース{$dbName}に接続しました。","<br>";
 
-      $sql = "SELECT * FROM lecture";
+      //$sql = "SELECT * FROM lecture";
+      $sql = "SELECT * FROM lecture JOIN freeday ON lecture.id = freeday.lecturer_id JOIN skill_table ON lecture.id = skill_table.lecturer_id ";
       $stm = $pdo->prepare($sql);
       $stm->execute();
       $results = $stm->fetchAll(PDO::FETCH_ASSOC);
@@ -31,7 +32,6 @@
 
       <form method="POST" action="confirm_offer.php">
         <ul>
-
 
       <?php
       //テーブルのタイトル行
@@ -53,8 +53,11 @@
         echo "<td>",$row['name'],"</td>";
         echo "<td>",$row['tel'],"</td>";
         echo "<td>",$row['mail_address'],"</td>";
-        echo "<td>",$row['skill'],"</td>";
-        echo "<td>",$row['freeday'],"</td>";
+        echo "<td>",$row['skill_id'],"</td>";
+        echo "<td>",$row['begin'],"</td>";
+        $array = array($row['id']);
+        $ID = implode(",", $array);
+        echo $ID;
         echo "</tr>";
       }
       echo "<tbody>";
@@ -64,20 +67,6 @@
         echo '<span class="error">エラーがありました。</span><br>';
         echo $e->getMessage();
         exit();
-      }
-
-      $error = [];
-      if(isSet($_POST["name"])){
-        $names = ($_POST["name"]);
-        $diffValue = array_diff($_POST["name"], $names);
-        if(count($diffValue)==0){
-          $nameChecked = $_POST["name"];
-        } else {
-          $nameChecked = [];
-          $error[] = "エラーです";
-        }
-      } else {
-        $nameChecked = [];
       }
 
 

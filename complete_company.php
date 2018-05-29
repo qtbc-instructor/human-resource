@@ -6,10 +6,7 @@
   </head>
   <body>
     <div>
-      <?php
-
-
-       ?>
+      <p>送信完了しました。</p>
 
        <form method="POST" action="company_mainpage.php">
          <ul>
