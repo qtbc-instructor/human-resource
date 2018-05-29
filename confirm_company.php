@@ -1,4 +1,12 @@
 <?php
+//=============================================================================
+// Contents   : 新規企業画面での入力フォームの値を確認
+// FileName   : confirm_company.php
+// Author     : yamada
+// LastUpdate : 2018/5/29
+// Since      : 2018/5/25
+//=============================================================================
+
 session_start();
 require_once("Util.php");
 require_once("ErrorCheck.php");
@@ -27,6 +35,7 @@ if(count($errorCheck)>0){
   header("location:{$gobackURL}");
   exit();
 }
+//エラー無し
 else{
   $_SESSION['errors'] = NULL;
   $name = $_POST['name'];
@@ -62,7 +71,7 @@ else{
   </div>
 
   <div>
-    <form method="post" action="complete_entry_company.php">
+    <form method="post" action="insert_company.php">
       <!-- hiddenで登録完了ページに値を渡す -->
       <input type="hidden" name="name" value="<?php echo $name; ?>">
       <input type="hidden" name="tel" value="<?php echo $tel; ?>">

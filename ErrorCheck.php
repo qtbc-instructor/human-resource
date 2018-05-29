@@ -1,4 +1,13 @@
 <?php
+//=============================================================================
+// Contents   : 入力フォームのエラーチェック
+// FileName   : ErrorCheck.php
+// Author     : yamada
+// LastUpdate : 2018/5/29
+// Since      : 2018/5/29
+//=============================================================================
+
+//ErrorCheckクラス
 class ErrorCheck{
   //エラー内容格納
   public $errors = array(
@@ -8,8 +17,14 @@ class ErrorCheck{
     "address" => "",
     "pass" => ""
   );
-
-  //エラーチェック
+  //===========================================================================
+  //エラーチェックメソッド
+  //引数：($_POST,$type)
+  //      -->$typeは"company"か"lecture"の文字列
+  //戻り値：$errors[]
+  //入力フォームに値が入っているか
+  //電話番号、アドレス、パスワードは形式を指定
+  //===========================================================================
   public static function validation($data,$type){
      $errors;
     if(!isset($data['name']) || ($data['name']=="")){
@@ -39,10 +54,11 @@ class ErrorCheck{
         $errors['pass'] = "パスワードは半角英数で6文字以上12文字以内で入力してください";
     }
 
+    //エラー発生時
     if(isset($errors)){
       return $errors;
     }
-    else {
+    else {//エラー無し
       $errors=NULL;
       return $errors;
     }

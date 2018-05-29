@@ -1,4 +1,12 @@
 <?php
+//=============================================================================
+// Contents   : 新規講師画面での入力フォームの値を確認
+// FileName   : confirm_lecture.php
+// Author     : yamada
+// LastUpdate : 2018/5/29
+// Since      : 2018/5/25
+//=============================================================================
+
 session_start();
 require_once("Util.php");
 require_once("ErrorCheck.php");
@@ -38,7 +46,7 @@ else{
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <title>登録内容確認</title>
 </head>
 
@@ -57,7 +65,7 @@ else{
   </div>
 
   <div>
-    <form method="post" action="complete_entry_lecture.php">
+    <form method="post" action="insert_lecture.php">
       <!-- hiddenで登録完了ページに値を渡す -->
       <input type="hidden" name="name" value="<?php echo $name; ?>">
       <input type="hidden" name="tel" value="<?php echo $tel; ?>">

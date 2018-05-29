@@ -1,4 +1,11 @@
 <?php
+//=============================================================================
+// Contents   : 新規講師アカウントの基本情報入力フォーム
+// FileName   : entry_lecture.php
+// Author     : yamada
+// LastUpdate : 2018/5/29
+// Since      : 2018/5/25
+//=============================================================================
 //セッション開始
 session_start();
 require_once("Util.php");
@@ -10,6 +17,7 @@ $input = array(
   "address" => "",
   "pass" => ""
  );
+
 //セッションの値を格納
 foreach ($_SESSION as $key => $value) {
   if($key == "name") $input["name"] = Util::es($value);
@@ -18,6 +26,7 @@ foreach ($_SESSION as $key => $value) {
   else if($key == "pass") $input["pass"] = Util::es($value);
 }
 
+//エラーメッセージの有無
 if(isset($_SESSION['errors'])){
   $errorMassage = $_SESSION['errors'];
 }
