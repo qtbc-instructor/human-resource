@@ -1,3 +1,6 @@
+<?php
+session_start();
+session_destroy(); ?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -37,33 +40,36 @@
     email.onblur = function(){ chkRegEmail(email.value);};
     password.onblur = function(){ isHanAlpha(password);};
 
-    // function chkRegEmail(str){
-    //   var Seiki=/[!#-9A-~]+@+[a-z0-9]+.+[^.]$/i;
-    //   if(str!=""){
-    //     if(str.match(Seiki)){
-    //       alert(str.match(Seiki)+"\n\nメールアドレスの形式は正しいです");
-    //     } else {
-    //       alert("メールアドレスの形式が不正です");
-    //     }
-    //   } else {
-    //     alert("メールアドレスを入力してください");
-    //   }
-    // };
-    //
-    // function isHanAlpha(obj){
-    //   var str=obj.value;
-    //   if(str!=""){
-    //     if(str.match(/^[A-Za-z0-9]*$/)){
-    //       if(str.length > 6 && str.length < 12){
-    //         alert("6文字以上12文字以内で入力して下さい");
-    //       }
-    //     } else {
-    //       alert("半角英数字で入力して下さい。");
-    //     }
-    //   } else {
-    //     alert("パスワードを入力して下さい")
-    //   }
-    // };
+    function chkRegEmail(str){
+      var Seiki=/[!#-9A-~]+@+[a-z0-9]+.+[^.]$/i;
+      if(str!=""){
+        if(!str.match(Seiki)){
+          alert("メールアドレスの形式が不正です");
+          return false;
+        }
+      } else {
+        alert("メールアドレスを入力してください");
+        return false;
+      }
+    };
+
+    function isHanAlpha(obj){
+      var str=obj.value;
+      if(str!=""){
+        if(str.match(/^[A-Za-z0-9]*$/)){
+          if(str.length < 6 | str.length > 12){
+            alert("6文字以上12文字以内で入力して下さい");
+            return false;
+          }
+        } else {
+          alert("半角英数字で入力して下さい。");
+          return false;
+        }
+      } else {
+        alert("パスワードを入力して下さい");
+        return false;
+      }
+    };
 
     // 企業・講師選択ボタン
     loginButton.addEventListener('click', function() {

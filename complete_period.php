@@ -28,10 +28,11 @@ $end = $_SESSION['end'];
       $stm = $pdo->prepare($sql);
       $stm->execute();
     }catch(Exception $e) {
-
+      echo '<span class="error">エラーがありました。</span><br>';
+      echo $e->getMessage();
     }
      ?>
     <hr>
-    <button onclick="location.href='lecture_mainpage.php'">戻る</button>
+    <button onclick="location.href='lecture_mainpage.php'">メインページへ</button>
   </body>
 </html>
