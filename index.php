@@ -40,13 +40,13 @@
     function chkRegEmail(str){
       var Seiki=/[!#-9A-~]+@+[a-z0-9]+.+[^.]$/i;
       if(str!=""){
-        if(str.match(Seiki)){
-          alert(str.match(Seiki)+"\n\nメールアドレスの形式は正しいです");
-        } else {
+        if(!str.match(Seiki)){
           alert("メールアドレスの形式が不正です");
+          return false;
         }
       } else {
         alert("メールアドレスを入力してください");
+        return false;
       }
     };
    
@@ -54,14 +54,17 @@
       var str=obj.value; 
       if(str!=""){
         if(str.match(/^[A-Za-z0-9]*$/)){
-          if(str.length > 6 && str.length < 12){
+          if(str.length < 6 | str.length > 12){
             alert("6文字以上12文字以内で入力して下さい");
+            return false;
           }
         } else {
-          alert("半角英数字で入力して下さい。");  
+          alert("半角英数字で入力して下さい。");
+          return false;
         }
       } else {
-        alert("パスワードを入力して下さい")
+        alert("パスワードを入力して下さい");
+        return false;
       }
     };
     
