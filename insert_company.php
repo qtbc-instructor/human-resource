@@ -3,8 +3,8 @@
 // Contents   : 入力値が正値である場合、DBに追加し登録完了
 // FileName   : insert_company.php
 // Author     : yamada
-// LastUpdate : 2018/5/29
-// Since      : 2018/5/29
+// LastUpdate : 2018/5/30
+// Since      : 2018/5/25
 //=============================================================================
 
 session_start();

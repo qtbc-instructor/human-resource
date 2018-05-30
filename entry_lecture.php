@@ -3,7 +3,7 @@
 // Contents   : 新規講師アカウントの基本情報入力フォーム
 // FileName   : entry_lecture.php
 // Author     : yamada
-// LastUpdate : 2018/5/29
+// LastUpdate : 2018/5/30
 // Since      : 2018/5/25
 //=============================================================================
 //セッション開始
@@ -96,7 +96,7 @@ else {
               </ul>
             </form>
           </div>
-        </div>  
+        </div>
         </div>
         <footer class="demo-footer mdl-mini-footer"></footer>
        </main>

@@ -3,7 +3,7 @@
 // Contents   : 新規企業画面での入力フォームの値を確認
 // FileName   : confirm_company.php
 // Author     : yamada
-// LastUpdate : 2018/5/29
+// LastUpdate : 2018/5/30
 // Since      : 2018/5/25
 //=============================================================================
 
@@ -100,6 +100,7 @@ else{
     </form>
     <button onclick="location.href='entry_company.php'">戻る</button><!--入力ページに戻る-->
   </div>
+</div>
 </div>
 <footer class="demo-footer mdl-mini-footer"></footer>
 </main>
