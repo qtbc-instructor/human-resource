@@ -17,7 +17,6 @@ require_once("./util.php");
     $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
     //例外がスローされる設定にする
     $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-    echo "データベース{$dbname}に接続しました。";"<br>";
   } catch (Exception $e){
      echo '<span class="error">エラーがありました。</span><br>';
      echo $e->getMessage();
