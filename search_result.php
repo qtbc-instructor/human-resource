@@ -1,7 +1,6 @@
 <?php
 session_start();
-
-var_dump($_SESSION['company_id']);
+// var_dump($_SESSION['company_id']);
 $test2 = $_SESSION['login_address'];
 var_dump($test2);
  ?>

@@ -16,7 +16,7 @@ if(empty($_SESSION["date"])){
 }
 
 //アドレス、ID確認
-var_dump($_SESSION['company_id']);
+// var_dump($_SESSION['company_id']);
 $test2 = $_SESSION['login_address'];
 var_dump($test2);
 ?>
@@ -40,7 +40,7 @@ var_dump($test2);
 
         if(isset($_POST['check'])){
           $_SESSION['check'] = $_POST['check'];
-          var_dump($_SESSION['check']);
+          // var_dump($_SESSION['check']);
         }
        ?>
       <?php
@@ -50,7 +50,7 @@ var_dump($test2);
         $error[] = "";
       } else {
         $check = $_SESSION['check'];
-        var_dump($check);
+        // var_dump($check);
       }
 
           $user = 'root';
