@@ -5,8 +5,7 @@
   <title>講師ログイン画面</title>
   <link rel="stylesheet" type="text/css" href="./css/reset.css">
   <link href='https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en' rel='stylesheet' type='text/css'>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./css/material.min.css">
     <link rel="stylesheet" type="text/css" href="./css/styles.css">
 </head>
@@ -40,9 +39,9 @@
       $lecture_pass = $_SESSION['login_pass'];
     }else{$err=true;}
     
-    // if($err == true){
-    //   throw new Exception("ログイン情報が未入力");
-    // }
+    if($err == true){
+      throw new Exception("ログイン情報が未入力");
+    }
   
     //講師検索
     $sql = "select id,name from lecture where mail_address=\"{$lecture_mail_address}\" and pass=\"{$lecture_pass}\";";
