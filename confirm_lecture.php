@@ -48,9 +48,27 @@ else{
 <head>
   <meta charset="utf-8">
   <title>登録内容確認</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./material.min.css">
+    <link rel="stylesheet" type="text/css" href="./styles.css">
 </head>
 
 <body>
+<div>
+<div class="demo-layout mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-color--grey-100">
+ <header class="demo-header mdl-layout__header mdl-layout__header--scroll mdl-color--grey-100 mdl-color-text--grey-800">
+   <div class="mdl-layout__header-row">
+     <span class="mdl-layout-title">人材マッチングシステム</span>
+   </div>
+ </header>
+
+ <div class="demo-ribbon"></div>
+ <main class="demo-main mdl-layout__content">
+   <div class="demo-container mdl-grid">
+     <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+     <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
 <div>
     <p>登録内容確認</p>
     <p>確認して、問題がなければ登録ボタンを押してください。</p>
@@ -62,8 +80,7 @@ else{
       <tr><th>メールアドレス</th><td><?php echo $mail_address; ?></td></tr>
       <tr><th>パスワード</th><td><?php echo $pass; ?></td></tr>
     </table>
-  </div>
-
+</div>
   <div>
     <form method="post" action="insert_lecture.php">
       <!-- hiddenで登録完了ページに値を渡す -->
@@ -75,5 +92,10 @@ else{
     </form>
     <button onclick="location.href='entry_lecture.php'">戻る</button><!--入力ページに戻る-->
   </div>
+
+</div>
+<footer class="demo-footer mdl-mini-footer"></footer>
+</main>
+</div>
 </body>
 </html>

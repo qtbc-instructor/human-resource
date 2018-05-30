@@ -21,9 +21,27 @@ $_SESSION['pass'] = $_POST['pass'];
 <head>
   <meta charset="utf-8">
   <title>登録完了画面</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./material.min.css">
+    <link rel="stylesheet" type="text/css" href="./styles.css">
+
 </head>
 
 <body>
+  <div class="demo-layout mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-color--grey-100">
+     <header class="demo-header mdl-layout__header mdl-layout__header--scroll mdl-color--grey-100 mdl-color-text--grey-800">
+       <div class="mdl-layout__header-row">
+         <span class="mdl-layout-title">人材マッチングシステム</span>
+       </div>
+     </header>
+     <div class="demo-ribbon"></div>
+     <main class="demo-main mdl-layout__content">
+       <div class="demo-container mdl-grid">
+         <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+         <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
+
   <div>
     <?php
     //db情報
@@ -47,7 +65,7 @@ $_SESSION['pass'] = $_POST['pass'];
       //例外がスローされる設定にする
       $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
       //SQL文の作成
-      $sql = "INSERT INTO lecture (name,tel,mail_address,pass) VALUES (:name,:tel,:mail_address,:pass)";
+      $sql = "INSERT INTO lecture (name,tel,mail_address,pass) VALUES (:name,:tel,:mail_address,sha2(:pass,256))";
       $stm = $pdo->prepare($sql);//プリペアドステートメントの作成
 
       //プレースホルダに値をバインド
@@ -78,5 +96,10 @@ $_SESSION['pass'] = $_POST['pass'];
       }
      ?>
    </div>
+ </div>
+ </div>
+ <footer class="demo-footer mdl-mini-footer"></footer>
+ </main>
+ </div>
   </body>
   </html>

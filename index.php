@@ -73,8 +73,8 @@ function killSession(){
     var password = document.getElementById("password");
     var loginButton = document.getElementById("loginButton");
 
-    email.onblur = function(){ chkRegEmail(email.value);};
-    password.onblur = function(){ isHanAlpha(password);};
+  //  email.onblur = function(){ chkRegEmail(email.value);};
+    //password.onblur = function(){ isHanAlpha(password);};
 
     function chkRegEmail(str){
       var Seiki=/[!#-9A-~]+@+[a-z0-9]+.+[^.]$/i;
@@ -112,7 +112,7 @@ function killSession(){
 
       if(selected_value === "company"){
         alert("company");
-        loginForm.setAttribute('action','sample.php');
+        loginForm.setAttribute('action','company_mainpage.php');
         loginForm.submit();
       } else if(selected_value === "lecture"){
         alert("lecture");
