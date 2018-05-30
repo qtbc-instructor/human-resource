@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 session_start();
 $err = false;
@@ -48,24 +49,36 @@ try{
 ?>
 
 
+=======
+>>>>>>> company_g
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" type="text/css">
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<<<<<<< HEAD
   <title>企業様ログインペーシ</title>
 </head>
 <body>
   <h1>ようこそ <?php echo"{$companyName}様"; ?></h1>
   <p class="company_approval_pending">承認待ちの講師</p>
+=======
+</head>
+<body>
+  <p class="company_approval_pending">承認待ち</p>
+>>>>>>> company_g
   <?php
   $user = "root";
   $pass = "mariadb";
   $dbh =new PDO('mysql:host=localhost;dbname=lcmatching_db;charset=utf8', $user, $pass);
   $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+<<<<<<< HEAD
   $sql = "SELECT id,name,begin,company_id, status FROM lecture,status
              WHERE lecture.id = lecture_id AND status = 0 AND company_id = $companyId";
+=======
+  $sql = "SELECT id,name, begin, status FROM lecture,status WHERE lecture.id = lecture_id AND status = 0";
+>>>>>>> company_g
   $stmt = $dbh->query($sql);
   $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
   $dbh = null;
@@ -80,6 +93,10 @@ try{
     echo "<tr>";
     echo "<td>", $approvalPending['name'], "</td>";
     echo "<td>", $approvalPending['begin'], "</td>";
+<<<<<<< HEAD
+=======
+    echo "<td>", $approvalPending['status'], "</td>";
+>>>>>>> company_g
     echo "</tr>";
   }
   echo "<tbody>";
@@ -87,14 +104,23 @@ try{
   echo "</div>";
   ?>
 
+<<<<<<< HEAD
   <p class="company_notification">承認済みの講師</p>
+=======
+  <p class="company_notification">承認済み</p>
+>>>>>>> company_g
   <?php
   $user = "root";
   $pass = "mariadb";
   $dbh =new PDO('mysql:host=localhost;dbname=lcmatching_db;charset=utf8', $user, $pass);
   $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+<<<<<<< HEAD
   $sql = "SELECT id,name, begin, status FROM lecture,status
             WHERE lecture.id = lecture_id AND status = 1 AND company_id = $companyId";
+=======
+  $sql = "SELECT id,name, begin, status FROM lecture,status WHERE lecture.id = lecture_id AND status = 1";
+  $sqlNg = "SELECT id,name, begin, status FROM lecture,status WHERE lecture.id = lecture_id AND status = 4";
+>>>>>>> company_g
   $stmt = $dbh->query($sql);
   $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
   $dbh = null;
@@ -103,12 +129,20 @@ try{
   echo "<thead><tr>";
   echo "<th>","講師名","</th>";
   echo "<th>","日付","</th>";
+<<<<<<< HEAD
+=======
+  echo "<th>","状態","</th>";
+>>>>>>> company_g
   echo "</thead></tr>";
   echo "<tbody>";
   foreach($result as $approvalPending) {
     echo "<tr>";
     echo "<td>", $approvalPending['name'], "</td>";
     echo "<td>", $approvalPending['begin'], "</td>";
+<<<<<<< HEAD
+=======
+    echo "<td>", $approvalPending['status'], "</td>";
+>>>>>>> company_g
     echo "</tr>";
   }
   echo "<tbody>";
@@ -116,14 +150,22 @@ try{
   echo"<br>";
   ?>
 
+<<<<<<< HEAD
   <p class="company_notification">承認されなかった講師</p>
+=======
+  <p class="company_notification">拒否されました</p>
+>>>>>>> company_g
   <?php
   $user = "root";
   $pass = "mariadb";
   $dbh =new PDO('mysql:host=localhost;dbname=lcmatching_db;charset=utf8', $user, $pass);
   $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+<<<<<<< HEAD
   $sql = "SELECT id,name, begin, status FROM lecture,status
             WHERE lecture.id = lecture_id AND status = 4 AND company_id = $companyId";
+=======
+  $sql = "SELECT id,name, begin, status FROM lecture,status WHERE lecture.id = lecture_id AND status = 4";
+>>>>>>> company_g
   $stmt = $dbh->query($sql);
   $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
   $dbh = null;
@@ -132,12 +174,20 @@ try{
   echo "<thead><tr>";
   echo "<th>","講師名","</th>";
   echo "<th>","日付","</th>";
+<<<<<<< HEAD
+=======
+  echo "<th>","状態","</th>";
+>>>>>>> company_g
   echo "</thead></tr>";
   echo "<tbody>";
   foreach($result as $approvalPending) {
     echo "<tr>";
     echo "<td>", $approvalPending['name'], "</td>";
     echo "<td>", $approvalPending['begin'], "</td>";
+<<<<<<< HEAD
+=======
+    echo "<td>", $approvalPending['status'], "</td>";
+>>>>>>> company_g
     echo "</tr>";
   }
   echo "<tbody>";
@@ -145,14 +195,22 @@ try{
   echo"<br>";
   ?>
 
+<<<<<<< HEAD
   <p class"company_valution">まだ評価が登録されていない講師</p>
+=======
+  <p class"company_valution">評価登録</p>
+>>>>>>> company_g
   <?php
   $user = "root";
   $pass = "mariadb";
   $dbh =new PDO('mysql:host=localhost;dbname=lcmatching_db;charset=utf8', $user, $pass);
   $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+<<<<<<< HEAD
   $sql = "SELECT id,name, begin, status FROM lecture,status
             WHERE lecture.id = lecture_id AND status = 2 AND company_id = $companyId";
+=======
+  $sql = "SELECT id,name, begin, status FROM lecture,status WHERE lecture.id = lecture_id AND status = 2";
+>>>>>>> company_g
   $stmt = $dbh->query($sql);
   $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
   $dbh = null;
@@ -174,6 +232,7 @@ try{
     echo "<td>", $approvalPending['status'], "</td>";
     echo "<td>", $approvalPending['id'], "</td>";
     ?>
+<<<<<<< HEAD
     <form action="company_mainpage.php" method="POST" name="redirect_page">
       <td>
         <select name="evaluationCount">
@@ -183,6 +242,17 @@ try{
         <option value="3">3</option>
         <option value="4">4</option>
         <option value="5">5</option>
+=======
+    <form action="company_mainpage.php" method="POST">
+      <td>
+        <select name="evaluationCount">
+          <option value="">評価を選択してください</option>
+        <option value="1000-00-00">1</option>
+        <option value="2000-00-00">2</option>
+        <option value="3000-000-00">3</option>
+        <option value="4000-00-00">4</option>
+        <option value="5000-00-00">5</option>
+>>>>>>> company_g
       </select>
       </td>
       <td>
@@ -232,23 +302,35 @@ try{
 
   <?php
     if (isset($_POST['evaluationId'])) {
+<<<<<<< HEAD
       $evaluationData = $_POST['evaluationCount'];
       $evaluationId = $_POST['evaluationId'];
+=======
+      $evalutionData = $_POST['evaluationCount'];
+      $evalutionId = $_POST['evaluationId'];
+>>>>>>> company_g
 
       $user = "root";
       $pass = "mariadb";
       $dbh =new PDO('mysql:host=localhost;dbname=lcmatching_db;charset=utf8', $user, $pass);
       $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+<<<<<<< HEAD
       $sql = "UPDATE status SET evaluation = $evaluationData where lecture_id = $evaluationId";
+=======
+      $sql = "UPDATE status SET evaluation = '$evalutionData' where lecture_id = '$evalutionId'";
+>>>>>>> company_g
       $stmt = $dbh->query($sql);
       $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
       $dbh = null;
     }
+<<<<<<< HEAD
   }catch(Exception $e){
        echo '<span>エラー：</span>';
        echo $e->getMessage();
   }
 
+=======
+>>>>>>> company_g
     ?>
 
 </body>
