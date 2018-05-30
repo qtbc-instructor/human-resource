@@ -1,5 +1,24 @@
 <?php
 session_start();
+
+//戻った時の値表示
+//   $data = $_SESSION['data'];
+//   var_dump($data);
+// //skill_idのチェック
+//   $skill_id = $_SESSION["skill_id"];
+//   var_dump($skill_id);
+//日付チェック
+if(empty($_SESSION["date"])){
+  $begin = "";
+} else {
+  $begin = $_SESSION["date"];
+  var_dump($begin);
+}
+
+//アドレス、ID確認
+var_dump($_SESSION['company_id']);
+$test2 = $_SESSION['login_address'];
+var_dump($test2);
 ?>
 
 <!DOCTYPE>
@@ -10,19 +29,30 @@ session_start();
   </head>
   <body>
     <div>
-
+<p>過去にこの講師に申し込んだ情報</p>
       <?php
       $error = [];
-      // var_dump($_SESSION["data"]);
         if(!empty($_SESSION['date'])){
           $date = $_SESSION['date'];
         } else {
           $error[] = "";
         }
+
+        if(isset($_POST['check'])){
+          $_SESSION['check'] = $_POST['check'];
+          var_dump($_SESSION['check']);
+        }
        ?>
       <?php
-          $check = $_POST['check'];
-           var_dump($check);
+
+      $error = [];
+      if(empty($_SESSION['check'])){
+        $error[] = "";
+      } else {
+        $check = $_SESSION['check'];
+        var_dump($check);
+      }
+
           $user = 'root';
           $password = 'mariadb';
           $dbName = 'lcmatching_db';
@@ -38,7 +68,6 @@ session_start();
 
           //チェックボックスのチェック判定
           $sql = "SELECT * FROM lecture JOIN status ON lecture.id = status.lecture_id JOIN skill_table ON lecture.id = skill_table.lecturer_id WHERE lecture_id = '$check'";
-
           $stm = $pdo->query($sql);
           $results = $stm->fetchAll(PDO::FETCH_ASSOC);
 

@@ -1,3 +1,31 @@
+<?php
+session_start();
+
+//skill_idチェック
+if(empty($_SESSION["skill_id"])){
+  $skill_id = "";
+} else {
+  $skill_id = $_SESSION["skill_id"];
+  var_dump($skill_id);
+}
+
+//日付チェック
+if(empty($_SESSION["date"])){
+  $begin = "";
+} else {
+  $begin = $_SESSION["date"];
+  var_dump($begin);
+}
+
+//lecture_idチェック
+  var_dump($_SESSION['check']);
+//アドレス、ID確認
+var_dump($_SESSION['company_id']);
+$company_id = $_SESSION['company_id'];
+$test2 = $_SESSION['login_address'];
+var_dump($test2);
+?>
+
 <!DOCTYPE>
 <html>
   <head>
@@ -8,6 +36,9 @@
     <div>
       <p>申し込みが完了しました。</p>
       <?php
+      $check = $_SESSION['check'];
+       var_dump($check);
+
       $user = 'root';
       $password = 'mariadb';
       $dbName = 'lcmatching_db';
@@ -21,9 +52,10 @@
       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       echo "データベース{$dbName}に接続しました。","<br>";
 
-      $sql = "UPDATE status SET status = 0";
-      $stm = $pdo->query($sql);
-      $results = $stm->fetchAll(PDO::FETCH_ASSOC);
+      $sql = "INSERT INTO status VALUES
+      ('',  '{$check}', '{$skill_id}', '{$begin}', '{$company_id}', '', 0)";
+      $stm = $pdo->prepare($sql);
+      $stm->execute();
 
     } catch (Exception $e) {
       echo '<span class="error">エラーがありました。</span><br>';

@@ -1,6 +1,9 @@
 <?php
 session_start();
-}
+
+var_dump($_SESSION['company_id']);
+$test2 = $_SESSION['login_address'];
+var_dump($test2);
  ?>
 
  <?php
@@ -29,8 +32,15 @@ session_start();
       <p>検索結果</p>
 
   <?php
-      $wantDate = $_POST['begin-end'];
-      $wantSkill = $_POST['skill'];
+      if(isset($_POST['date'])){
+        $_SESSION['date'] = $_POST['date'];
+      }
+       $date = $_SESSION['date'];
+       $mozi = mb_substr($date, 0, 7);
+       $firstDate = $mozi.'-00';
+       $lastDate = $mozi.'-31';
+      // $wantDate = $_SESSION['date'];
+      $wantSkill = $_SESSION['skill'];
       $user = 'root';
       $password = 'mariadb';
       $dbName = 'lcmatching_db';
@@ -43,20 +53,13 @@ session_start();
       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 //      echo "データベース{$dbName}に接続しました。","<br>";
 
-      $sql = "SELECT * FROM lecture JOIN status ON lecture.id = status.lecture_id JOIN skill_table ON lecture.id = skill_table.lecturer_id WHERE status.begin = '$wantDate' AND skill_table.skill_id = '$wantSkill'";
-
+      // $sql = "SELECT * FROM lecture JOIN status ON lecture.id = status.lecture_id JOIN skill_table ON lecture.id = skill_table.lecturer_id WHERE status.begin = '$wantDate' AND skill_table.skill_id = '$wantSkill'";
+      $sql = "SELECT * FROM lecture JOIN freeday ON lecture.id = freeday.lecturer_id JOIN skill_table ON lecture.id = skill_table.lecturer_id WHERE freeday.begin BETWEEN '$firstDate' AND '$lastDate'";
       $stm = $pdo->query($sql);
       $results = $stm->fetchAll(PDO::FETCH_ASSOC);
       // echo "<pre>";
       // var_dump($results);
       // echo "<pre>";
-      $_SESSION["data"] = $results;
-      //戻った時の値表示
-      if(empty($_SESSION["data"])){
-        $data = "";
-      } else {
-        $data = $_SESSION["data"];
-      }
       // var_dump($_SESSION["data"]);
       ?>
 
@@ -85,9 +88,6 @@ session_start();
         echo "<td>",$row['mail_address'],"</td>";
         echo "<td>",$row['skill_id'],"</td>";
         echo "<td>",$row['begin'],"</td>";
-        // $array = array($row['id']);
-        // $ID = implode(",", $array);
-        // echo $ID;
         echo "</tr>";
       }
       echo "<tbody>";
@@ -98,8 +98,8 @@ session_start();
         echo $e->getMessage();
         exit();
       }
-
       ?>
+
       <input type="button" value="戻る" onclick="location.href='company_mainpage.php'">
       <input type="submit" value="決定">
     </ul>
