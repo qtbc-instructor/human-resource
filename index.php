@@ -99,7 +99,7 @@ session_destroy(); ?>
       var selected_value = loginForm_selected.value ;
 
       if(selected_value === "company"){
-        loginForm.setAttribute('action','sample.php');
+        loginForm.setAttribute('action','company_mainpage.php');
         loginForm.submit();
       } else if(selected_value === "lecture"){
         loginForm.setAttribute('action','lecture_mainpage.php');
