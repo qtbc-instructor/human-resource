@@ -29,18 +29,28 @@ session_start();
 require_once("./PDO.php");
 
 $skillList = $_POST["skillList"];
-
-foreach($skillList as $value){
-  $sql = "INSERT INTO skill_table VALUES('',:id,:skill)";
+$list = [];
+//選択スキルのID取得
+for($i = 0 ; $i < count($skillList);$i++){
+  $sql = "SELECT id FROM skill_master WHERE skilltype LIKE :skilltype";
   $stm = $pdo->prepare($sql);
-  $stm->bindValue(':id',$_SESSION["id"],PDO::PARAM_INT); 
-  $stm->bindValue(':skill',$value,PDO::PARAM_STR); 
+  $stm->bindValue(':skilltype',$skillList[$i],PDO::PARAM_INT); 
   $stm->execute();
+  $result = $stm->fetch(PDO::FETCH_ASSOC);
+  $list[] = $result;
 }
+
+foreach($list as $value){
+   $sql = "INSERT INTO skill_table VALUES('',:id,:skill)";
+   $stm = $pdo->prepare($sql);
+   $stm->bindValue(':id',$_SESSION["id"],PDO::PARAM_INT); 
+   $stm->bindValue(':skill',$value["id"],PDO::PARAM_STR); 
+   $stm->execute();
+ }
  ?>
  <script type="text/javascript">
- function move (){window.location = "index.php";}
- setTimeout(move, 5000);
+ // function move (){window.location = "index.php";}
+ // setTimeout(move, 5000);
  </script>
 
 </div>
